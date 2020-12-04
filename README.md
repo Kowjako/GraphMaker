@@ -10,4 +10,4 @@ Program obsługuje zdarzenia myszki, klawiatury, rysowanie elementów graficznyc
 # P.S.
 Program posiada dopisane Popup Menu które ułatwia zarządzanie programem oraz krótką intrukcje
 # Screenshot
-![Screenshot_1](https://user-images.githubusercontent.com/19534189/101165631-aa201180-363f-11eb-8c8b-7d601c94949d.png)
+![Screenshot_1](https://user-images.githubusercontent.com/19534189/101166195-8e693b00-3640-11eb-8dd1-821219e926dd.png)
