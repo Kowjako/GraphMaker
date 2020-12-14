@@ -1,5 +1,5 @@
 # GraphMaker
-Program do rysowania grafów
+Program do rysowania/edycji, odtwarzania/przechowywania grafów
 # Technologie
 Program obsługuje zdarzenia myszki, klawiatury, rysowanie elementów graficznych za pomoca biblioteki Swing 
 # Mozliwosci
