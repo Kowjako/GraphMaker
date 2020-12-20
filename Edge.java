@@ -1,13 +1,13 @@
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.io.Serializable;
 /* 
  *     Plik: Edge.java
         
- *    Autor: Uladzimir Kaviaka
- *     Data: XX grudzien 2020 r.
+         Klasa reprezentuje krawedz grafu
+        
+ *    Autor: Uladzimir Kaviaka(257276)
+ *     Data: 19 grudzien 2020 r.
  */
 public class Edge implements Serializable {
    
@@ -42,25 +42,25 @@ public class Edge implements Serializable {
 	   g.setColor(color);
 	   g.drawLine(startNode.getX(), startNode.getY(), endNode.getX(), endNode.getY());
    }
-
-   /*Piewszy if - czy nalezy do prostokatu na osi Ox oraz nie ma roznicy pomiedzy startNode oraz endNode */
-   /*Drugi if - sprawdza czy nalezy do prostokatu na osi Oy */
    
    public boolean isMouseOver(int m_posx, int m_posy) {
       double precision = 5; /*maksymalna rozbieznosc pomiedzy myszka a krawedzia */
       if((m_posx<=startNode.getX() || m_posx<=endNode.getX()) && (m_posx>=startNode.getX() || m_posx>=endNode.getX())) { 
-    	  if(m_posy>startNode.getY() && m_posy>endNode.getY() || (m_posy)<startNode.getY() && m_posy<endNode.getY()) {
-    		  return false;  /*myszka nie lezy wewnatrz prostokatu */
+    	  if((m_posy>startNode.getY() && m_posy>endNode.getY()) || ((m_posy)<startNode.getY() && m_posy<endNode.getY())) {
+    		  return false;  /*myszka nie lezy wewnatrz prostokatu okreslonego wierzcholkami*/
     	  }
-    	  else {
-    		  /*zmienne do obliczania odleglosci pomiedzy prosrtymi rownoleglymi */
-    		  int x = endNode.getY() - startNode.getY(); 
-    		  int y = startNode.getX() - endNode.getX();
-    		  int z = endNode.getX() * startNode.getY() - startNode.getX() * endNode.getY();
-    		  double tmp_precision = (double)Math.abs(x*m_posx+y*m_posy+z)/Math.sqrt(x*x+y*y);
-    		  if(tmp_precision<=precision) return true;
-    		  else return false;
-    	  }
+			else {
+				/*Odleglosc pomiedzy punktem a prosta */
+				double distance = (double) Math
+						.abs((endNode.getY() - startNode.getY()) * m_posx - (endNode.getX() - startNode.getX()) * m_posy
+								+ endNode.getX() * startNode.getY() - endNode.getY() * startNode.getX())
+								/ Math.sqrt(Math.pow((endNode.getY() - startNode.getY()), 2)
+										+ Math.pow(endNode.getX() - startNode.getX(), 2));
+				if (distance <= precision)
+					return true;
+				else
+					return false;
+			}
       } else return false; 
    }
    

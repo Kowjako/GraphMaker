@@ -13,15 +13,15 @@ import javax.swing.JOptionPane;
  *           
  *           Okno glowne do edycji grafu
  *           
- *    Autor: Uladzimir Kaviaka
- *     Data: 18 grudzien 2020 r.
+ *    Autor: Uladzimir Kaviaka(257276)
+ *     Data: 20 grudzien 2020 r.
  */
 
 public class GraphEditor extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
 
-	private static final String AUTHOR = "Autor: Uladzimir Kaviaka  Data: XX grudzien 2020";
+	private static final String AUTHOR = "Autor: Uladzimir Kaviaka  Data: 20 grudzien 2020";
 	private static final String TITLE = "Edytor grafow kolorowanych";
 	
 	private static final String APP_INSTRUCTION =
@@ -45,7 +45,9 @@ public class GraphEditor extends JFrame implements ActionListener {
 	        "Gdy kursor wszkazuje na krawedz\n\n" +
 			"LB + Hold - przesuwanie danej krawedzi\n"+
 			"RB - zmiana koloru krawedzi\n" +
-	        "         usuwanie krawedzi";
+	        "         usuwanie krawedzi\n"+
+			"Dodanie krawedzi:\n"+
+	        "RB->Add edge->naciskamy na wierzcholek do ktorego chcemy zrobic krawedz";
 	
 	
 	public static void main(String[] args) {
@@ -72,7 +74,7 @@ public class GraphEditor extends JFrame implements ActionListener {
 	public GraphEditor() {
 		super(TITLE);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		setSize(400,400);
+		setSize(500,500);
 		setLocationRelativeTo(null);
 		setContentPane(panel);
 		createMenu();
@@ -191,19 +193,19 @@ public class GraphEditor extends JFrame implements ActionListener {
 		
 		Graph graph = new Graph();
 		
-		Node n1 = new Node(100, 50);
+		Node n1 = new Node(150, 100);
 		n1.setColor(Color.MAGENTA);
 		n1.setR(20);
 		n1.setName("A");
-		Node n2 = new Node(100, 200);
+		Node n2 = new Node(150, 300);
 		n2.setColor(Color.CYAN);
 		n2.setR(20);
 		n2.setName("B");
-		Node n3 = new Node(250, 50);
+		Node n3 = new Node(300, 70);
 		n3.setColor(Color.PINK);
 		n3.setR(20);
 		n3.setName("C");
-		Node n4 = new Node(250, 200);
+		Node n4 = new Node(300, 200);
 		n4.setColor(Color.ORANGE);
 		n4.setR(20);
 		n4.setName("D");

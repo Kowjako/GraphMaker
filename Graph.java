@@ -11,8 +11,10 @@ import java.util.List;
 /* 
  *     Plik: Graph.java
  *           
- *    Autor: Uladzimir Kaviaka
- *     Data: XX grudnia 2020 r.
+ *          Klasa reprezentuje graph
+ *           
+ *    Autor: Uladzimir Kaviaka(257276)
+ *     Data: 19 grudnia 2020 r.
  */
 
 public class Graph implements Serializable {

@@ -5,8 +5,10 @@ import java.io.Serializable;
 /* 
  *     Plik: Node.java
         
- *    Autor: Uladzimir Kaviaka
- *     Data: XX grudzien 2020 r.
+        Klasa reprezentuje wierzcholek grafu
+        
+ *    Autor: Uladzimir Kaviaka(257276)
+ *     Data: 19 grudzien 2020 r.
  */
 
 public class Node implements Serializable {

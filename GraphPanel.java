@@ -18,8 +18,10 @@ import javax.swing.JPopupMenu;
 /* 
  *     Plik: GraphPanel.java
  *           
- *    Autor: Uladzimir Kaviaka
- *     Data: XX grudzien 2020 r.
+ *           Klasa przezntuje panel do sterowania grafem
+ *           
+ *    Autor: Uladzimir Kaviaka(257276)
+ *     Data: 20 grudzien 2020 r.
  */
 
 public class GraphPanel extends JPanel implements MouseListener, MouseMotionListener, KeyListener {
@@ -32,12 +34,13 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	private int mouseY = 0;
 	
 	private boolean mouseButtonLeft = false;
+	private boolean isMakingEdgeStarted = false;
 	@SuppressWarnings("unused")
 	
 	private boolean mouseButtonRigth = false;
 	protected int mouseCursor = Cursor.DEFAULT_CURSOR;
 	
-	protected Node nodeUnderCursor = null;
+	protected Node nodeUnderCursor = null, tmpNode = null, startNode = null;
 	protected Edge edgeUnderCursor = null;
 	
 	
@@ -143,11 +146,17 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	}
 	
 	/*
-	 * Implementacja interfejsu MouseListener - obsіuga zdarzeс generowanych przez myszkк
-	 * gdy kursor myszki jest na tym panelu
+	 * Implementacja MouseListener
 	 */
 	@Override
 	public void mouseClicked(MouseEvent event) {
+		nodeUnderCursor = findNode(event);
+		if(isMakingEdgeStarted==true) {
+			tmpNode = nodeUnderCursor;
+			graph.addEdge(new Edge(startNode, tmpNode));
+			repaint();
+			isMakingEdgeStarted = false;
+		}
 	}
 
 	@Override
@@ -169,10 +178,8 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 	public void mouseReleased(MouseEvent event) {
 		if (event.getButton() == 1)
 			mouseButtonLeft = false;
-		if (event.getButton() == 3)
-			mouseButtonRigth = false;
-		setMouseCursor(event);
 		if (event.getButton() == 3) {
+			mouseButtonRigth = false;
 			if (nodeUnderCursor != null) {
 				createPopupMenu(event, nodeUnderCursor);
 			} else if (edgeUnderCursor != null) {
@@ -180,6 +187,7 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 			} else
 				createPopupMenu(event);
 		}
+		setMouseCursor(event);
 	}
 
 	
@@ -341,15 +349,14 @@ public class GraphPanel extends JPanel implements MouseListener, MouseMotionList
 		menuItem.addActionListener(new ActionListener() { /* Obsluga przycisku za pomoca klasy anonimowej */
 			@Override
 			public void actionPerformed(ActionEvent action) {
-				String name = JOptionPane.showInputDialog("Podaj nazwe wierzcholka (jenda litera)", "np. X");
+				/* String name = JOptionPane.showInputDialog("Podaj nazwe wierzcholka (jenda litera)", "np. X");
 				if (name == null || name.equals("") || name.length() > 1)
-					return;
-				graph.addEdge(new Edge(node, graph.getByName(name)));
-				repaint();
+					return; */
+				isMakingEdgeStarted = true;
+				startNode = node;
 			}
 		});
-		popupMenu.add(menuItem);
-		
+		popupMenu.add(menuItem);		
 		popupMenu.show(event.getComponent(), event.getX(), event.getY());
 	}
 
